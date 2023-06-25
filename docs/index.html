@@ -87,24 +87,20 @@ label {
     <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT US </a>
     <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> OUR MEMBERS </a>
     <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-      <i class="fa fa-search"></i>
-    </a>
   </div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT US</a>
-    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">OUR MEMBERS</a>
     <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
   </div>
 </div>
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
   <div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small">NEW YORK</span> SALSA</span>
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-large">NY</span><span class="w3-hide-small">NEW YORK</span> SALSA</span>
   </div>
 </div>
 
@@ -148,8 +144,8 @@ label {
   <h3 class="w3-center">OUR MEMBERS</h3>
   <p class="w3-center"><em>Payments<br> Enter your name and birthday:</em></p><br>
   <center>
-  <input style="width:150px;height:25px;" placeholder="Your first name" />
-  <select style="height:25px; label="day">
+  <input id="name" style="width:130px;height:25px;" placeholder="Your first name" onkeyup="showAddr();" />
+  <select id="day" style="height:25px; label="day" onChange="showAddr();" > 
     <option value="" selected disabled hidden>Day</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -161,15 +157,15 @@ label {
     <option value="8">8</option>
     <option value="9">9</option>
     <option value="10">10</option>
-    <option value="21">11</option>
-    <option value="22">12</option>
-    <option value="23">13</option>
-    <option value="24">14</option>
-    <option value="25">15</option>
-    <option value="26">16</option>
-    <option value="27">17</option>
-    <option value="28">18</option>
-    <option value="29">19</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
     <option value="20">20</option>
     <option value="21">21</option>
     <option value="22">22</option>
@@ -183,25 +179,24 @@ label {
     <option value="30">30</option>
     <option value="31">31</option>
   </select>
-  <select style="height:25px; label="month">
+  <select id="month" style="height:25px; label="month"  onChange="showAddr();" >
     <option value="" selected disabled hidden>Month</option>
-    <option value="1">January</option>
-    <option value="2">February</option>
-    <option value="3">March</option>
-    <option value="4">April</option>
-    <option value="5">May</option>
-    <option value="6">June</option>
-    <option value="7">July</option>
-    <option value="8">August</option>
-    <option value="9">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
+    <option value="JAN">January</option>
+    <option value="FEB">February</option>
+    <option value="MAR">March</option>
+    <option value="APR">April</option>
+    <option value="MAY">May</option>
+    <option value="JUN">June</option>
+    <option value="JUL">July</option>
+    <option value="AUG">August</option>
+    <option value="SEP">September</option>
+    <option value="OCT">October</option>
+    <option value="NOV">November</option>
+    <option value="DEC">December</option>
   </select>
-  <button onClick="showQrCode();">Submit</button>
   <p>
   We accept Bitcoin!<p>
-  <img src="img/bitcoin.png" width="300px">
+  <img src="img/bitcoin.png" width="300px" style="margin: 2em auto;">
   <div id="placeholder"
   style="
     width: 300px;
@@ -209,13 +204,21 @@ label {
     margin: 2em auto;">
 	Please fill the form above!</div> 
   <div id="qrcode" style="display:none;margin: 2em auto; width: 300px; height: 350px;" >
-  <a href="bitcoin:bc1qpw8cqz8z6cfqz6t9qqa5wd8j4n02ze3a6cqca0?amount=0.005">
-  <qr-code contents="bitcoin:bc1qpw8cqz8z6cfqz6t9qqa5wd8j4n02ze3a6cqca0?amount=0.005" 
+  <a id="addr_href" href="_">
+  <div>
+  
+  <qr-code 
+  id="qr_code_image"
+  contents="_" 
+  mask-x-to-y-ratio="1.2"
   style="
     width: 300px;
     height: 300px;
     margin: 0em auto;
-    background-color: #fff;"> </qr-code>
+    
+    background-color: #fff;"> 
+  </qr-code>
+  </div>
   <b>Pay 0.005 BTC</b>
   </div>
   <p>
@@ -272,9 +275,46 @@ label {
 </footer>
  
 <script>
-function showQrCode() {
-document.getElementById("placeholder").style.display = "none";
-document.getElementById("qrcode").style.display = "block";
+const cyrb53 = (str, seed = 0) => {
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for(let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+    h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+    h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+};
+
+function showAddr() {
+  console.log("onChange");
+  
+  var name=document.getElementById("name").value.toUpperCase();
+  var month=document.getElementById("month").value;
+  var day=document.getElementById("day").value;
+  
+  var key = name + "-" + month + "-" + day;
+  console.log("onChange" + key);
+  var hash = cyrb53(key);
+  console.log("hash: " + hash);
+  
+  if (hash == "6808628141785770") {
+    console.log(" => FOUND! ");
+    document.getElementById("placeholder").style.display = "none";
+    document.getElementById("qrcode").style.display = "block";    
+	var addr = "bitcoin:bc1qpw8cqz8z6cfqz6t9qqa5wd8j4n02ze3a6cqca0"
+	var url = addr + "?amount=0.005";
+    document.getElementById("addr_href").href = url;
+    // document.getElementById("qr_code_image").setAttribute("content", url);
+  } else {
+    console.log(" => UNKNOWN! ");
+    document.getElementById("placeholder").style.display = "block";
+    document.getElementById("qrcode").style.display = "none";    
+  }
 
 }
 
